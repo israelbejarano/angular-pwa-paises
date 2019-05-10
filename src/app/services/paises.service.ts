@@ -22,4 +22,16 @@ export class PaisesService {
       });
     });
   }
+
+  getPaisById(id: string) {
+    if (this.paises.length > 0) {
+      const pais = this.paises.find(p => p.alpha3Code === id);
+      return Promise.resolve(pais);
+    }
+
+    return this.getPaises().then(paises => {
+      const pais = this.paises.find(p => p.alpha3Code === id);
+      return Promise.resolve(pais);
+    });
+  }
 }
